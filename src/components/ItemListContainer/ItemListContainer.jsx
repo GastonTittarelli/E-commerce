@@ -49,7 +49,7 @@ const ItemListContainer = () => {
 					data-testid="loader"
 				/>
 			) : (
-				<div className="w-full min-h-max pt-[5vh] pb-[5vh] flex justify-around flex-wrap gap-[2rem]">
+				<div className="w-full min-h-max p-[3vh] pb-[5vh] flex justify-around flex-wrap gap-[1rem]">
 					{products.map((product) => (
 						<Card key={product.id} product={product} />
 					))}

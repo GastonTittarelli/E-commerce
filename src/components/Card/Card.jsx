@@ -1,16 +1,72 @@
+import { Card, Stack, CardBody, Image, CardFooter, Heading, Text, Button, ButtonGroup, Divider, Flex } from '@chakra-ui/react'
+import { useState } from 'react';
+
 import { Link } from "react-router-dom";
 
-const Card = ({ product }) => {
+const CardC = ({ product }) => {
+	const [isHovered, setIsHovered] = useState(false);
 	return (
-		<Link to={`/item/${product.id}`} className="flex flex-col justify-around items-center w-[16vw] h-[45vh] bg-white rounded-[10px] shadow-[0_0_10px_rgba(0,0,0,0.2)] transition-all duration-300 ease-in-out cursor-pointer p-[10px]">
-			<h3 className="text-[1rem] text-black">{product.title}</h3>
-			<img className="w-[50%] h-[30%]" src={product.image} alt={product.title} />
-			<h4 className="text-black">${product.price}</h4>
-			<div className="h-[10vh] text-[0.9rem] overflow-auto text-black">
-				<p>{product.description}</p>
-			</div>
+		<Card
+			onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+			maxW='300px'
+			className='m-4 transform transition-shadow duration-300 ease-in-out shadow-lg'
+			_hover={{
+				boxShadow: '0 0 8px rgba(0, 0, 0, 0.3)',
+  }}
+>
+  <CardBody>
+		<Link to={`/item/${product.id}`}>
+			<Image
+				src={product.image} 
+				alt={product.title}
+				borderRadius='md'
+				borderWidth='2px'
+				borderColor='gray.200'
+				objectFit='contain' 
+				h='250px'  
+				w='100%'  
+				transition='transform 0.3s ease'
+				_hover={{ transform: 'scale(1.1)' }}
+			/>
 		</Link>
+    <Stack mt='6' spacing='3'>
+      <Heading size='md' noOfLines={1} fontWeight='bold' color='blue.700'>
+        {product.title}
+      </Heading>
+      <Text noOfLines={3} textAlign='left' color='gray.600'>
+        {product.description}
+      </Text>
+      <Text color='blue.600' fontSize='2xl'  p={2} borderRadius='md'>
+        ${product.price}
+      </Text>
+    </Stack>
+  </CardBody>
+  <Divider 
+		color={isHovered ? 'blue.500' : 'black'} 
+		transition='color 0.3s ease'/>
+  <CardFooter>
+    <Flex justify='center' width='100%'>
+      <ButtonGroup spacing='1'>
+        <Link to={`/item/${product.id}`}>
+          <Button
+            variant='solid'
+            colorScheme='blue'
+            size='lg'
+            _hover={{ bg: 'blue.500', transform: 'scale(1.05)' }}
+            transition='all 0.3s ease'
+          >
+            Buy now
+          </Button>
+        </Link>
+      </ButtonGroup>
+    </Flex>
+  </CardFooter>
+</Card>
+
 	);
 };
 
-export default Card;
+export default CardC;
+
+

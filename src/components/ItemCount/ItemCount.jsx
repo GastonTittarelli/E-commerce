@@ -16,7 +16,7 @@ export const ItemCount = ({ initial, stock, onAdd }) => {
 	}, [initial]);
 
 	return (
-		<div className="w-full h-[20%] text-center flex items-center justify-center flex-wrap">
+		<div className="w-full h-[20%] text-center flex items-center justify-center flex-wrap" >
 			<button
 				className="bg-[#f2f2f2] border border-[#ccc] w-[20%] text-[#555] p-[4px] text-center no-underline inline-block text-[1rem] font-bold cursor-pointer h-[30px]"
 				disabled={count <= 1}

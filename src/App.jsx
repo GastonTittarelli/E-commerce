@@ -8,7 +8,7 @@ import CartProvider from "./context/CartContext";
 
 function App() {
 	return (
-		<div>
+		<div className="bg-slate-50">
 			<CartProvider>
 				<NavBar />
 				<Routes>
