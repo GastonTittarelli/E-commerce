@@ -7,7 +7,7 @@ import "../../index.css";
 import Swal from "sweetalert2";
 
 const Cart = () => {
-	const { cart, totalPrice } = useCartContext();
+	const { cart, totalPrice, clearCart } = useCartContext();
 	const [buyerInfo, setBuyerInfo] = useState({
 		firstName: "",
 		lastName: "",
@@ -65,6 +65,7 @@ const Cart = () => {
 							icon: "success",
 							confirmButtonText: "Ok",
 						}).then(() => {
+							clearCart();
 							window.location.href = "/";
 						});
 					})
@@ -80,24 +81,24 @@ const Cart = () => {
 
 	if (cart.length === 0) {
 		return (
-			<>
+			<div className="h-screen flex items-center justify-center flex-wrap flex-col">
 				<p className="text-[2rem] font-['Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif] font-semibold text-black mt-[2rem] mb-[1rem]">Oops! The Cart Is Empty!</p>
-				<Link className="bg-[rgb(149,147,10)] text-white w-[80%] h-auto border-none rounded-[5px] p-[5px] m-[5px] hover:bg-[rgb(168,166,6)]" to="/">
+				<Link className="bg-[rgb(149,147,10)] text-white w-[150px] h-auto border-none rounded-[5px] p-[5px] m-[5px] hover:bg-[rgb(168,166,6)]" to="/">
 					Go to store
 				</Link>
-			</>
+			</div>
 		);
 	}
 
 	return (
-		<>
+		<div className="min-h-screen">
 			{cart.map((item) => (
 				<ItemCart key={item.id} item={item} />
 			))}
 			<p className="text-[1.5rem] font-semibold text-black mb-[1rem] bg-[rgb(217,216,213)]">Total: ${totalPrice().toFixed(2)}</p>
 
-			<form className="flex flex-col items-center justify-center w-[40%] h-auto mx-auto mt-[3rem] pt-[1rem] pb-[1rem] bg-[rgb(205,218,219)] rounded-[10px]">
-				<div>
+			<form className="flex flex-col items-center justify-center w-[450px] h-auto mx-auto mt-[3rem] py-[1.5rem] bg-[rgb(205,218,219)] rounded-[10px]">
+				<div className="inputC">
 					<label className="label" htmlFor="firstName">
 						First Name:
 					</label>
@@ -110,7 +111,7 @@ const Cart = () => {
 						onChange={handleInputChange}
 					/>
 				</div>
-				<div>
+				<div className="inputC">
 					<label className="label" htmlFor="lastName">
 						Last Name:
 					</label>
@@ -123,7 +124,7 @@ const Cart = () => {
 						onChange={handleInputChange}
 					/>
 				</div>
-				<div>
+				<div className="inputC">
 					<label className="label" htmlFor="phone">
 						Phone:
 					</label>
@@ -136,7 +137,7 @@ const Cart = () => {
 						onChange={handleInputChange}
 					/>
 				</div>
-				<div>
+				<div className="inputC">
 					<label className="label" htmlFor="email">
 						Email:
 					</label>
@@ -145,11 +146,12 @@ const Cart = () => {
 						type="email"
 						id="email"
 						name="email"
+						required
 						value={buyerInfo.email}
 						onChange={handleInputChange}
 					/>
 				</div>
-				<div>
+				<div className="inputC">
 					<label className="label" htmlFor="confirmEmail">
 						Confirm Email:
 					</label>
@@ -165,13 +167,13 @@ const Cart = () => {
 			</form>
 
 			<button
-				className="bg-green-500 text-white w-[10%] h-auto border-none rounded-[5px] mt-[1rem] mb-[1.5rem] hover:bg-[#3e8e41]"
+				className="bg-green-500 text-white w-[130px] h-auto border-none rounded-[6px] mt-[1rem] mb-[1.5rem] hover:bg-[#3e8e41]"
 				disabled={!canSubmit}
 				onClick={handleClick}
 			>
 				Buy cart
 			</button>
-		</>
+		</div>
 	);
 };
 

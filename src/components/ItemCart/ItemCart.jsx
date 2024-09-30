@@ -12,7 +12,7 @@ export const ItemCart = ({ item }) => {
 				<p>Price: ${item.price}</p>
 				<p>Subtotal: ${item.quantity * item.price} </p>
 				<button
-					className="bg-[#d23404] text-white border-none rounded-[5px] text-[1rem] font-extrabold cursor-pointer hover:bg-[#a60c0c]"
+					className="bg-[#d23404] text-white border-none rounded-lg text-[1rem] font-extrabold cursor-pointer p-1 hover:bg-[#a60c0c]"
 					onClick={() => removeProduct(item.id)}
 				>
 					Delete

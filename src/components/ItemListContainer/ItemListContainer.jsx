@@ -38,7 +38,7 @@ const ItemListContainer = () => {
 	}, [category]);
 
 	return (
-		<div>
+		<div className="flex items-center justify-center w-full min-h-screen">
 			{loading ? (
 				<ClipLoader
 					color={color}
@@ -49,7 +49,7 @@ const ItemListContainer = () => {
 					data-testid="loader"
 				/>
 			) : (
-				<div className="w-full min-h-max p-[3vh] pb-[5vh] flex justify-around flex-wrap gap-[1rem]">
+				<div className="w-full min-h-[80%] p-[3vh] pb-[5vh] flex justify-around flex-wrap gap-[1rem]">
 					{products.map((product) => (
 						<Card key={product.id} product={product} />
 					))}

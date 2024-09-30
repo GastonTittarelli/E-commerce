@@ -37,7 +37,7 @@ export const ItemDetailContainer = ({ data }) => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen w-full m-2">
+    <div className="flex items-center justify-center h-screen w-full my-4">
       {loading ? (
         <ClipLoader
           color={color}
@@ -50,8 +50,8 @@ export const ItemDetailContainer = ({ data }) => {
       ) : (
         <div className="flex items-center justify-center gap-1 w-[900px] h-[600px] bg-white border border-solid border-gray-300 rounded-md shadow-sm" >
         <Card
-          maxW="850px"
-          maxH="850px"
+          w="850px"
+          h="80%"
 					direction="row"
           boxShadow="none"
         >
@@ -71,20 +71,19 @@ export const ItemDetailContainer = ({ data }) => {
               _hover={{ transform: "scale(1.3)", cursor: "zoom-in" }}
             />
 					</div>
-          <CardBody className="w-1/2 h-full p-4 border border-solid border-gray-300 rounded-md shadow-sm "  >
+          <CardBody className="w-1/2  p-4 border border-solid border-gray-300 rounded-md shadow-sm bg-slate-50 h-[100%] flex flex-wrap items-center justify-center" >
             
-            <Stack mt="6" spacing="3">
+            <Stack  spacing="3"  mb="6">
               <Heading
                 size="md"
                 fontWeight="bold"
-                color="blue.700"
               >
                 {product.title}
               </Heading>
               <Text  textAlign="left" color="gray.600">
                 {product.description}
               </Text>
-              <Text color="blue.600" fontSize="2xl" p={2} borderRadius="md">
+              <Text color="blue.600" fontSize="2xl" p={2} borderRadius="md" mt="6">
                 ${product.price}
               </Text>
             </Stack>
@@ -97,13 +96,13 @@ export const ItemDetailContainer = ({ data }) => {
   </CardFooter> */}
           {goToCart ? (
             <>
-              <Link to="/cart" className="w-[80%]">
-                <button className="bg-green-500 text-white w-[80%] h-auto border-none rounded-[5px] p-[5px] m-[5px] hover:bg-[#3e8e41]">
+              <Link to="/cart" className="w-[190px]">
+                <button className="bg-green-500 text-white w-[80%] h-auto border-none rounded-[6px] p-[5px] m-[5px] hover:bg-[#3e8e41]">
                   Go to Cart
                 </button>
               </Link>
               <Link to="/" className="w-[80%]">
-                <button className="bg-[rgb(149,147,10)] text-white w-[80%] h-auto border-none rounded-[5px] p-[5px] m-[5px] hover:bg-[rgb(168,166,6)]">
+                <button className="bg-[rgb(151,151,151)] text-white w-[190px] h-auto border-none rounded-[6px] p-[5px] m-[5px] hover:bg-[#838383]">
                   Continue Shopping
                 </button>
               </Link>

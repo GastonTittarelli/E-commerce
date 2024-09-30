@@ -17,11 +17,15 @@
 }
 
 .label {
-  @apply text-[1.2rem] text-black font-semibold;
+  @apply text-[1.2rem] text-black font-semibold border-black;
+}
+
+.imput{
+  @apply w-[100%] flex
 }
 
 .imput {
-  @apply w-full h-[2rem] bg-[rgb(31,30,28)] border-none rounded-[0.5rem] px-[0.5rem] text-[1rem] text-white;
+  @apply w-[300px] h-[2rem] bg-[rgb(240,240,240)]  rounded-[0.5rem] px-[0.5rem] text-[1rem] text-black border border-slate-400;
 }
 
 /*
