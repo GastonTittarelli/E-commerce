@@ -3,6 +3,8 @@ import { useCartContext } from "../../context/CartContext";
 import { Link } from "react-router-dom";
 import ItemCart from "../ItemCart/ItemCart";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { Modal, ModalOverlay, ModalContent, ModalHeader, ModalFooter, ModalBody, ModalCloseButton, Button, useDisclosure } from "@chakra-ui/react";
+
 import "../../index.css";
 import Swal from "sweetalert2";
 
@@ -16,6 +18,9 @@ const Cart = () => {
 		confirmEmail: "",
 	});
 
+	const { isOpen, onOpen, onClose } = useDisclosure();
+
+	
 	const handleInputChange = (event) => {
 		const { name, value } = event.target;
 		setBuyerInfo({ ...buyerInfo, [name]: value });
@@ -81,7 +86,7 @@ const Cart = () => {
 
 	if (cart.length === 0) {
 		return (
-			<div className="h-screen flex items-center justify-center flex-wrap flex-col">
+			<div className="min-h-[87vh] flex items-center justify-center flex-wrap flex-col">
 				<p className="text-[2rem] font-['Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif] font-semibold text-black mt-[2rem] mb-[1rem]">Oops! The Cart Is Empty!</p>
 				<Link className="bg-[rgb(149,147,10)] text-white w-[150px] h-auto border-none rounded-[5px] p-[5px] m-[5px] hover:bg-[rgb(168,166,6)]" to="/">
 					Go to store
@@ -91,13 +96,29 @@ const Cart = () => {
 	}
 
 	return (
-		<div className="min-h-screen">
+		<div className="min-h-[87vh]">
 			{cart.map((item) => (
 				<ItemCart key={item.id} item={item} />
 			))}
 			<p className="text-[1.5rem] font-semibold text-black mb-[1rem] bg-[rgb(217,216,213)]">Total: ${totalPrice().toFixed(2)}</p>
 
-			<form className="flex flex-col items-center justify-center w-[450px] h-auto mx-auto mt-[3rem] py-[1.5rem] bg-[rgb(205,218,219)] rounded-[10px]">
+			<Button onClick={onOpen} colorScheme="green" className="w-[130px] h-[30px]">
+        Comprar
+      </Button>
+
+			<Modal isOpen={isOpen} onClose={onClose} isCentered blockScrollOnMount={true} zIndex="-1">
+        <ModalOverlay />
+        <ModalContent maxW="550px" h="500px" zIndex="-1">
+          <ModalHeader 
+						fontSize="2xl"
+						fontWeight="bold"
+						textAlign="center"
+						color="teal.500"
+						letterSpacing="wider"
+					>Complete Your Purchase</ModalHeader>
+          <ModalCloseButton />
+          <ModalBody>
+			<form className="flex flex-col items-center justify-center w-[450px] h-auto mx-auto  py-[1.5rem] bg-[rgb(205,218,219)] rounded-[10px]">
 				<div className="inputC">
 					<label className="label" htmlFor="firstName">
 						First Name:
@@ -167,12 +188,15 @@ const Cart = () => {
 			</form>
 
 			<button
-				className="bg-green-500 text-white w-[130px] h-auto border-none rounded-[6px] mt-[1rem] mb-[1.5rem] hover:bg-[#3e8e41]"
+				className="bg-green-500 text-[1.1rem] text-white w-[130px] h-[40px] border-none rounded-[6px] mt-[1rem] mb-[1.5rem] cursor-pointer hover:bg-[#3e8e41] transition-all duration-200 ease-in-out"
 				disabled={!canSubmit}
 				onClick={handleClick}
 			>
 				Buy cart
 			</button>
+			</ModalBody>
+        </ModalContent>
+      </Modal>
 		</div>
 	);
 };

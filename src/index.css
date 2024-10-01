@@ -12,6 +12,10 @@
 @tailwind components;
 @tailwind utilities;
 
+
+.swal2-container{
+  z-index: 1500 !important; 
+} 
 .anchors {
   @apply flex text-[1.3rem] font-['Inter',system-ui,'Avenir',Helvetica,Arial,sans-serif] hover:text-[#5555c4];
 }

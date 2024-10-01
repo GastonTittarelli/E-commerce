@@ -4,10 +4,10 @@ import { useCartContext } from "../../context/CartContext";
 export const ItemCart = ({ item }) => {
 	const { removeProduct } = useCartContext();
 	return (
-		<div className="flex border-t border-b border-gray-500 max-w-[90%] my-[1rem] mx-auto items-center justify-center">
-			<img src={item.image} alt={item.title} className="w-[200px] h-[200px] mr-[1rem]" />
-			<div className="flex justify-between items-center text-center w-[75%]">
-				<p className="text-[1.2rem] font-extrabold m-0 w-[40%]">{item.title}</p>
+		<div className="flex border-t border-b border-gray-500 max-w-[95%] my-[1rem] mx-auto items-center justify-center">
+			<img src={item.image} alt={item.title} className="w-[100px] h-[100px] mr-[1rem]" />
+			<div className="flex justify-between items-center text-center w-[80%]">
+				<p className="text-[1rem] font-extrabold m-0 w-[40%]">{item.title}</p>
 				<p>Quantity: {item.quantity}</p>
 				<p>Price: ${item.price}</p>
 				<p>Subtotal: ${item.quantity * item.price} </p>

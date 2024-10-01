@@ -4,7 +4,7 @@ import CartWidget from "../CartWidget/CartWidget";
 
 const NavBar = () => {
 	return (
-		<nav className="w-full flex items-center justify-around bg-[#cddadb]">
+		<nav className="w-full flex items-center justify-around bg-[#cddadb] h-[13vh]">
 			<Link to="/">
 				<img
 					className="h-28 p-6 justify-between hover:filter hover:drop-shadow-[0_0_10px_rgba(85,85,196)] transition-all duration-300 ease-linear" 

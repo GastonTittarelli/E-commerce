@@ -9,7 +9,7 @@ const CardC = ({ product }) => {
 		<Card
 			onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
-			maxW='300px'
+			maxW='270px'
 			className='m-4 transform transition-shadow duration-300 ease-in-out shadow-lg'
 			_hover={{
 				boxShadow: '0 0 8px rgba(0, 0, 0, 0.3)',
@@ -24,7 +24,7 @@ const CardC = ({ product }) => {
 				borderWidth='2px'
 				borderColor='gray.200'
 				objectFit='contain' 
-				h='250px'  
+				h='150px'  
 				w='100%'  
 				transition='transform 0.3s ease'
 				_hover={{ transform: 'scale(1.1)' }}
@@ -52,9 +52,9 @@ const CardC = ({ product }) => {
           <Button
             variant='solid'
             colorScheme='blue'
-            size='lg'
-            _hover={{ bg: 'blue.500', transform: 'scale(1.05)' }}
-            transition='all 0.3s ease'
+            size='md'
+            _hover={{  transform: 'scale(1.03)' }}
+            transition='all 0.2s ease'
           >
             Buy now
           </Button>

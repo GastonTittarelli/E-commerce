@@ -4,7 +4,7 @@ import { Link, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
-import { Card, Stack, CardBody, Image, Heading, Text } from "@chakra-ui/react";
+import { Card, Stack, CardBody, Image, Heading, Text, Box } from "@chakra-ui/react";
 // Button, ButtonGroup, Divider, Flex, CardFooter
 
 const override = {
@@ -37,7 +37,7 @@ export const ItemDetailContainer = ({ data }) => {
   };
 
   return (
-    <div className="flex items-center justify-center h-screen w-full my-4">
+    <div className="flex items-center justify-center min-h-[87vh] w-full my-4">
       {loading ? (
         <ClipLoader
           color={color}
@@ -48,10 +48,10 @@ export const ItemDetailContainer = ({ data }) => {
           data-testid="loader"
         />
       ) : (
-        <div className="flex items-center justify-center gap-1 w-[900px] h-[600px] bg-white border border-solid border-gray-300 rounded-md shadow-sm" >
+        <div className="flex items-center justify-center gap-1 w-[900px] h-[500px] bg-white border border-solid border-gray-300 rounded-md shadow-sm" >
         <Card
           w="850px"
-          h="80%"
+          h="95%"
 					direction="row"
           boxShadow="none"
         >
@@ -80,9 +80,26 @@ export const ItemDetailContainer = ({ data }) => {
               >
                 {product.title}
               </Heading>
+              <Box 
+                maxHeight="150px"  // Limita la altura
+                overflowY="auto"   // Activa el scroll vertical
+                sx={{
+                  '&::-webkit-scrollbar': {
+                    width: '8px',   // Anchura de la barra
+                  },
+                  '&::-webkit-scrollbar-thumb': {
+                    background: 'blue.600',  // Color de la barra
+                    borderRadius: '24px',    // Bordes redondeados
+                  },
+                  '&::-webkit-scrollbar-track': {
+                    background: 'gray.200',  // Color del track
+                  },
+                }}
+              >
               <Text  textAlign="left" color="gray.600">
                 {product.description}
               </Text>
+              </Box>
               <Text color="blue.600" fontSize="2xl" p={2} borderRadius="md" mt="6">
                 ${product.price}
               </Text>
