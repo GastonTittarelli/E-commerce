@@ -105,21 +105,15 @@ export const ItemDetailContainer = ({ data }) => {
               </Text>
             </Stack>
           
-
-          {/* <CardFooter>
-    <Flex justify='center' width='100%'>
-      
-    </Flex>
-  </CardFooter> */}
           {goToCart ? (
             <>
               <Link to="/cart" className="w-[190px]">
-                <button className="bg-green-500 text-white w-[80%] h-auto border-none rounded-[6px] p-[5px] m-[5px] hover:bg-[#3e8e41]">
+                <button className="bg-green-500 text-white w-[80%] h-auto border-none rounded-[6px] p-[5px] m-[5px] hover:bg-[#3e8e41] duration-300">
                   Go to Cart
                 </button>
               </Link>
               <Link to="/" className="w-[80%]">
-                <button className="bg-[rgb(151,151,151)] text-white w-[190px] h-auto border-none rounded-[6px] p-[5px] m-[5px] hover:bg-[#838383]">
+                <button className="bg-[rgb(151,151,151)] text-white w-[190px] h-auto border-none rounded-[6px] p-[5px] m-[5px] hover:bg-[#2b6cb0] transition duration-300">
                   Continue Shopping
                 </button>
               </Link>

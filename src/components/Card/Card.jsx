@@ -1,4 +1,4 @@
-import { Card, Stack, CardBody, Image, CardFooter, Heading, Text, Button, ButtonGroup, Divider, Flex } from '@chakra-ui/react'
+import { Card, Stack, CardBody, Image, CardFooter, Heading, Text, Button, ButtonGroup, Divider, Flex, Box } from '@chakra-ui/react'
 import { useState } from 'react';
 
 import { Link } from "react-router-dom";
@@ -16,7 +16,8 @@ const CardC = ({ product }) => {
   }}
 >
   <CardBody>
-		<Link to={`/item/${product.id}`}>
+    <Box display="flex" justifyContent="center" alignItems="center">
+		<Link to={`/item/${product.id}`} className='w-[80%] flex items-center justify-center'>
 			<Image
 				src={product.image} 
 				alt={product.title}
@@ -30,6 +31,7 @@ const CardC = ({ product }) => {
 				_hover={{ transform: 'scale(1.1)' }}
 			/>
 		</Link>
+      </Box>
     <Stack mt='6' spacing='3'>
       <Heading size='md' noOfLines={1} fontWeight='bold' color='blue.700'>
         {product.title}

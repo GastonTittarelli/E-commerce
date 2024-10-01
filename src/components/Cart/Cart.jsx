@@ -88,7 +88,7 @@ const Cart = () => {
 		return (
 			<div className="min-h-[87vh] flex items-center justify-center flex-wrap flex-col">
 				<p className="text-[2rem] font-['Gill Sans','Gill Sans MT',Calibri,'Trebuchet MS',sans-serif] font-semibold text-black mt-[2rem] mb-[1rem]">Oops! The Cart Is Empty!</p>
-				<Link className="bg-[rgb(149,147,10)] text-white w-[150px] h-auto border-none rounded-[5px] p-[5px] m-[5px] hover:bg-[rgb(168,166,6)]" to="/">
+				<Link className="bg-[rgb(151,151,151)] text-white w-[150px] h-auto border-none rounded-[6px]  p-2 m-[5px] hover:bg-[#2b6cb0] transition duration-300" to="/">
 					Go to store
 				</Link>
 			</div>
@@ -102,8 +102,8 @@ const Cart = () => {
 			))}
 			<p className="text-[1.5rem] font-semibold text-black mb-[1rem] bg-[rgb(217,216,213)]">Total: ${totalPrice().toFixed(2)}</p>
 
-			<Button onClick={onOpen} colorScheme="green" className="w-[130px] h-[30px]">
-        Comprar
+			<Button onClick={onOpen} colorScheme="green" className="w-[130px] h-[30px] mb-6">
+				Buy Now
       </Button>
 
 			<Modal isOpen={isOpen} onClose={onClose} isCentered blockScrollOnMount={true} zIndex="-1">
@@ -192,7 +192,7 @@ const Cart = () => {
 				disabled={!canSubmit}
 				onClick={handleClick}
 			>
-				Buy cart
+				Finalize Order
 			</button>
 			</ModalBody>
         </ModalContent>
