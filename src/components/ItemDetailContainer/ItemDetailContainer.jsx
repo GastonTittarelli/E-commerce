@@ -1,11 +1,10 @@
 import { doc, getDoc, getFirestore } from "firebase/firestore";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { ClipLoader } from "react-spinners";
 import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
 import { Card, Stack, CardBody, Image, Heading, Text, Box } from "@chakra-ui/react";
-// Button, ButtonGroup, Divider, Flex, CardFooter
 
 const override = {
   display: "block",
@@ -15,21 +14,32 @@ const override = {
 
 export const ItemDetailContainer = ({ data }) => {
   const [loading, setLoading] = useState(true);
-  let [color, setColor] = useState("#ffffff");
-  const [product, setProduct] = useState({});
+  const [product, setProduct] = useState(null);
   const { id } = useParams();
   const [selectedProduct, setSelectedProduct] = useState({});
-
+	let [color, setColor] = useState("#2b6cb0");
   const [goToCart, setGotoCart] = useState(false);
   const { addProduct } = useCartContext();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const queryDb = getFirestore();
     const queryDoc = doc(queryDb, "items", id);
     getDoc(queryDoc)
-      .then((res) => setProduct({ id: res.id, ...res.data() }))
-      .then(() => setLoading(false));
-  }, []);
+      .then((res) => {
+        if (res.exists()) {
+          setProduct({ id: res.id, ...res.data() });
+        } else {
+          // Si el producto no existe, redirigir a "Not Found"
+          navigate("/not-found");
+        }
+      })
+      .catch((error) => {
+        console.error("Error fetching document:", error);
+        navigate("/not-found"); // Redirigir también en caso de error
+      })
+      .finally(() => setLoading(false));
+  }, [id, navigate]);
 
   const onAdd = (quantity) => {
     setGotoCart(true);
@@ -42,7 +52,7 @@ export const ItemDetailContainer = ({ data }) => {
         <ClipLoader
           color={color}
           loading={loading}
-          cssOverride={override}
+          cssOverride={{ borderColor: color }}
           size={150}
           aria-label="Loading Spinner"
           data-testid="loader"
@@ -81,18 +91,18 @@ export const ItemDetailContainer = ({ data }) => {
                 {product.title}
               </Heading>
               <Box 
-                maxHeight="150px"  // Limita la altura
-                overflowY="auto"   // Activa el scroll vertical
+                maxHeight="150px"  
+                overflowY="auto"   
                 sx={{
                   '&::-webkit-scrollbar': {
-                    width: '8px',   // Anchura de la barra
+                    width: '5px',  
                   },
                   '&::-webkit-scrollbar-thumb': {
-                    background: 'blue.600',  // Color de la barra
-                    borderRadius: '24px',    // Bordes redondeados
+                    background: 'blue.600', 
+                    borderRadius: '24px',   
                   },
                   '&::-webkit-scrollbar-track': {
-                    background: 'gray.200',  // Color del track
+                    background: 'gray.200',  
                   },
                 }}
               >
@@ -106,18 +116,18 @@ export const ItemDetailContainer = ({ data }) => {
             </Stack>
           
           {goToCart ? (
-            <>
-              <Link to="/cart" className="w-[190px]">
-                <button className="bg-green-500 text-white w-[80%] h-auto border-none rounded-[6px] p-[5px] m-[5px] hover:bg-[#3e8e41] duration-300">
+            <div >
+              <Link to="/cart" className="w-[70%]">
+                <button className="bg-green-500 text-white w-[70%] h-auto border-none rounded-[6px] p-[5px] m-[5px] hover:bg-[#3e8e41] duration-200">
                   Go to Cart
                 </button>
               </Link>
-              <Link to="/" className="w-[80%]">
-                <button className="bg-[rgb(151,151,151)] text-white w-[190px] h-auto border-none rounded-[6px] p-[5px] m-[5px] hover:bg-[#2b6cb0] transition duration-300">
+              <Link to="/" className="w-[70%]">
+                <button className="bg-[rgb(151,151,151)] text-white w-[70%] h-auto border-none rounded-[6px] p-[5px] m-[5px] hover:bg-[#2b6cb0] transition duration-200">
                   Continue Shopping
                 </button>
               </Link>
-            </>
+            </div>
           ) : (
             <ItemCount initial={1} stock={7} onAdd={onAdd} />
           )}

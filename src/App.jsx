@@ -5,6 +5,8 @@ import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailCont
 import Cart from "./components/Cart/Cart";
 import React from "react";
 import CartProvider from "./context/CartContext";
+import NotFound from "./components/NotFound/NotFound";
+import Footer from "./components/Footer/Footer";
 
 function App() {
 	return (
@@ -17,8 +19,10 @@ function App() {
 					<Route path="/cart" element={<Cart />} />
 					<Route path="/checkout" element={<Cart />} />
 					<Route path="item/:id" element={<ItemDetailContainer />} />
-					<Route path="*" element={<h2>¡Oops! Page not found!</h2>} />
+					<Route path="/not-found" element={<NotFound/>} />
+					<Route path="*" element={<NotFound/>} />
 				</Routes>
+				<Footer />
 			</CartProvider>
 		</div>
 	);
