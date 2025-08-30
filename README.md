@@ -2,6 +2,17 @@
 
 This project is a modern and optimized e-commerce application built with **React.js**. The application has been restructured to enhance user experience by improving styling, adding animations, and creating a seamless navigation flow. Below, you'll find a detailed breakdown of the key features and technologies used.
 
+## 📸 Screenshots
+- **Home**
+<img width="1903" height="916" alt="image"  src="https://github.com/user-attachments/assets/3b039a14-a2cf-46a0-b8a5-d64a30af34e9" />
+
+- **Item-Detail**
+<img width="1903" height="916" alt="image" src="https://github.com/user-attachments/assets/067df8bd-3c8f-4147-a9a3-56282d0c170b" />
+
+- **Cart**
+<img width="1903" height="916" alt="image" src="https://github.com/user-attachments/assets/f74d5907-d0e6-4dad-afdc-c95b15f23cd2" />
+
+
 ## **Technologies Used**
 - **HTML, JavaScript, React.js**: Core framework and technologies for building the app.
 - **Tailwind CSS**: For utility-first CSS styling, making the layout and design more manageable.
